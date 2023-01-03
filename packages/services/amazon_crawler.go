@@ -1,4 +1,4 @@
-package packages
+package services
 
 import (
 	"fmt"
@@ -21,6 +21,7 @@ func (a AmazonCrawler) Search(url string) []models.Product {
 	var link string
 	var name string
 	var price string
+
 	c.OnHTML("div[class]", func(e *colly.HTMLElement) {
 		if e.Attr("class") == "s-card-container s-overflow-hidden aok-relative puis-expand-height puis-include-content-margin puis s-latency-cf-section s-card-border" {
 			fmt.Println("achou algo")
@@ -42,9 +43,9 @@ func (a AmazonCrawler) Search(url string) []models.Product {
 				return true
 			})
 
-			e.ForEachWithBreak("div", func(i int, e *colly.HTMLElement) bool {
-				if e.Attr("class") == "a-row" {
-					price = e.Text
+			e.ForEachWithBreak("span", func(i int, e *colly.HTMLElement) bool {
+				if e.Attr("class") == "a-price-whole" {
+					price = s.Replace(s.Replace(e.Text, ",", "", -1), ".", "", -1)
 					return false
 				}
 				return true
@@ -53,7 +54,7 @@ func (a AmazonCrawler) Search(url string) []models.Product {
 			if name != "" && price != "" && link != "" {
 				product := models.Product{
 					Name:  name,
-					Price: price,
+					Price: "R$ " + price,
 					Link:  link,
 				}
 
