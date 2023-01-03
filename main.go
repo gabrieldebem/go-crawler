@@ -8,8 +8,8 @@ import (
 var crawler contracts.ICrawler
 
 func main() {
-	url := "https://www.amazon.com.br/s?k=notebook+acer+nitro+5&sprefix=notebook+acer+%2Caps%2C272&ref=nb_sb_ss_ts-doa-p_2_14"
-	crawler = services.AmazonCrawler{}
+	url := "https://lista.mercadolivre.com.br/notebook#D[A:notebook]"
+	crawler = services.MercadoLivreCrawler{}
 
 	crawler.Search(url)
 }
