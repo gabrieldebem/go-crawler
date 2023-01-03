@@ -1,15 +1,20 @@
 package main
 
 import (
-	"github.com/gabrieldebem/go-crawler/packages/services"
 	"github.com/gabrieldebem/go-crawler/packages/contracts"
+	"github.com/gabrieldebem/go-crawler/packages/handlers"
+	"github.com/gin-gonic/gin"
 )
 
 var crawler contracts.ICrawler
 
 func main() {
-	url := "https://lista.mercadolivre.com.br/notebook#D[A:notebook]"
-	crawler = services.MercadoLivreCrawler{}
+	r := gin.Default()
 
-	crawler.Search(url)
+	api := r.Group("/api")
+	{
+		api.GET("/products", handlers.GetProducts)
+	}
+
+	r.Run()
 }
