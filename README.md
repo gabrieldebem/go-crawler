@@ -6,14 +6,15 @@ It is a bot to list a product on some eccomerces.
 
 You may run it localy using the command `go run main.go` or build this and run the binary using:
 ```
-    go build main.go
+go build main.go
 ```
 
 Then use
 ```
-    ./main
+./main
 ```
 
+Also, you can dowload the binary [here](https://github.com/gabrieldebem/go-crawler/releases/tag/latest)
 After that, a new application will be running on port `8080` on your localhost.
 
 ## Usage
