@@ -37,11 +37,6 @@ func (m MercadoLivreCrawler) Search(url string) []models.Product {
 				Link:  link,
 			}
 
-			fmt.Println("Produto:")
-			fmt.Println(product.Name)
-			fmt.Println(product.Price)
-			fmt.Println(product.Link)
-
 			m.products = append(m.products, product)
 		}
 	})
